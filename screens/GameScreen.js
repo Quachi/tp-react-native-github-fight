@@ -2,12 +2,13 @@ import React from 'react';
 import {
     View,
     StyleSheet,
-    Text
+    Text,
+    TouchableOpacity
 } from 'react-native';
 
-export default class LinksScreen extends React.Component {
+export default class GameScreen extends React.Component {
     static navigationOptions = {
-        title: 'Links',
+        title: 'Game',
     };
 
     render() {
