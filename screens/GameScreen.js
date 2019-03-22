@@ -8,6 +8,7 @@ import {
 import {FormPlayer} from "../components/FormPlayer";
 import {Player} from "../components/Player";
 import {ButtonBattle} from "../components/ButtonBattle";
+import {ResultBattle} from "../components/ResultBattle";
 
 export default class GameScreen extends React.Component {
     static navigationOptions = {
@@ -18,20 +19,34 @@ export default class GameScreen extends React.Component {
         super(props);
         this.state = {
             player1: {},
-            player2: {}
+            player2: {},
+            resultFight: false
         }
     }
 
     setPlayer = (number, user) => {
-        (number === 1 ? this.setState({player1: user}) : this.setState({player1: user}))
+        (number === 1 ? this.setState({player1: user}) : this.setState({player2: user}))
+    }
+
+    fight = () => {
+        this.setState({resultFight: !this.state.resultFight});
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <Player number={1} handler={this.setPlayer}/>
-                <ButtonBattle/>
+                {this.state.resultFight ?
+                    <ResultBattle playerOne={this.state.player1}
+                                  playerTwo={this.state.player2}
+                                  />
+                    :
+                    <ButtonBattle playerOne={this.state.player1}
+                                  playerTwo={this.state.player2}
+                                  handler={this.fight}/>
+                }
                 <Player number={2} handler={this.setPlayer}/>
+
             </View>
         );
     }

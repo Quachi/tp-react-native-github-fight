@@ -6,10 +6,17 @@ import {
 } from 'react-native'
 
 export class ButtonBattle extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    fight = () => {
+        this.props.handler();
+    }
     render() {
         return(
             <View style={styles.container}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={this.fight}>
                     <Text style={styles.text}>Battle</Text>
                 </TouchableOpacity>
             </View>

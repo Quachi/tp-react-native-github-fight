@@ -15,17 +15,15 @@ export class InfoPlayer extends React.Component {
                 <Image style={styles.image} source={{uri:this.props.user.avatar_url}}/>
                 <Text style={styles.text}>{this.props.user.name}</Text>
                 <Text style={styles.text}>@{this.props.user.login}</Text>
-                <Text style={styles.text}>Score: 150</Text>
             </View>
         )
-    }
+    }xz
 }
 
 const styles = StyleSheet.create({
     image:{
-        height:150,
-        width:150
-
+        height:100,
+        width:100
     },
     text:{
         fontSize:28,

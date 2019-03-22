@@ -11,15 +11,24 @@ export class FormPlayer extends React.Component {
         super(props);
         this.state = {
             name: "",
-            user: {}
+            user: {},
+            showError: false
         }
     }
 
     submitPlayer = (name) => {
-        api.getPlayer(name).then(user => {
-            this.setState({user});
-            this.props.handler(user);
-        });
+        api.getPlayer(name)
+            .then(user => {
+                if (user === 'Not_find') {
+                    this.setState({showError: true});
+                    setTimeout(() => {
+                        this.setState({showError: false});
+                    }, 3000)
+                } else {
+                    this.setState({user});
+                    this.props.handler(user);
+                }
+            })
     }
 
 
@@ -39,6 +48,10 @@ export class FormPlayer extends React.Component {
                 <TouchableOpacity onPress={() => this.submitPlayer(this.state.name)} style={styles.btnSubmit}>
                     <Text style={styles.textBtnSubmit}>Submit</Text>
                 </TouchableOpacity>
+                {this.state.showError &&
+                <Text style={styles.error}>Utilisateur inconnue</Text>
+                }
+
                 {/*<InfoPlayer login={this.state.user.login} name={this.state.user.name}/>*/}
             </View>
         )
@@ -46,27 +59,31 @@ export class FormPlayer extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    text:{
-        fontSize:28,
+    text: {
+        fontSize: 28,
         fontWeight: 'bold'
     },
-    input:{
+    input: {
         borderWidth: 1,
-        paddingLeft:5,
-        paddingRight:20,
-        paddingVertical:10,
-        fontSize:18,
+        paddingLeft: 5,
+        paddingRight: 20,
+        paddingVertical: 10,
+        fontSize: 18,
         marginVertical: 10,
         minWidth: 220,
     },
     btnSubmit: {
         backgroundColor: '#DDDDDD',
         padding: 10,
-        marginTop: 30,
+        marginTop: 10,
     },
-    textBtnSubmit:{
+    textBtnSubmit: {
         textAlign: 'center',
-        fontSize:18,
+        fontSize: 18,
         fontWeight: 'bold'
+    },
+    error: {
+        color: 'red',
+        marginVertical: 5
     }
 })
