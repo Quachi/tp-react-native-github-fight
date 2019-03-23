@@ -5,10 +5,10 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
-import {FormPlayer} from "../components/FormPlayer";
-import {Player} from "../components/Player";
-import {ButtonBattle} from "../components/ButtonBattle";
-import {ResultBattle} from "../components/ResultBattle";
+import {FormPlayer} from "../components/battle-components/FormPlayer";
+import {Player} from "../components/battle-components/Player";
+import {ButtonBattle} from "../components/battle-components/ButtonBattle";
+import {ResultBattle} from "../components/battle-components/ResultBattle";
 
 export default class GameScreen extends React.Component {
     static navigationOptions = {

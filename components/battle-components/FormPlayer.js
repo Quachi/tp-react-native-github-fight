@@ -4,7 +4,7 @@ import {
     Text,
     TextInput, TouchableOpacity, StyleSheet
 } from 'react-native'
-import * as api from '../services/apis/GithubAPI';
+import * as api from '../../services/apis/GithubAPI';
 
 export class FormPlayer extends React.Component {
     constructor(props) {

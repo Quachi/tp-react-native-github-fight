@@ -18,9 +18,11 @@ export class ResultBattle extends React.Component {
 
     componentDidMount() {
         const {playerOne, playerTwo} = this.props;
-        this.setState({score1:playerOne.followers + playerOne.public_repos + playerOne.following});
-        this.setState({score2:playerTwo.followers + playerTwo.public_repos + playerTwo.following});
-        const winner = (this.state.score1 > this.state.score2 ? 1 : 2)
+        const score1 = playerOne.followers + playerOne.public_repos + playerOne.following;
+        const score2 = playerTwo.followers + playerTwo.public_repos + playerTwo.following
+        const winner = (score1 > score2 ? 1 : 2);
+        this.setState({score1});
+        this.setState({score2});
         this.setState({winner});
     }
 
@@ -29,7 +31,7 @@ export class ResultBattle extends React.Component {
         return (
             <View style={styles.container}>
                 <ResultPlayer player={playerOne} score={this.state.score1}/>
-                <Text>{this.state.winner}</Text>
+                <Text>Winner : {this.state.winner}</Text>
                 <ResultPlayer player={playerTwo} score={this.state.score2}/>
             </View>
         )

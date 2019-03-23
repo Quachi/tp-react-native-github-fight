@@ -12,3 +12,17 @@ export const getPlayer = (name) => {
             return ("Not_find");
         })
 }
+
+export const getRepoPopular = (language = 'all') => {
+    return axios.get(
+        `https://api.github.com/search/repositories` +
+        `?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories?client_id=+` +
+        `${client_id}&client_secret=${client_secret}`
+    )
+        .then(response => {
+            return (response.data)
+        })
+        .catch(error => {
+            return ("Not_find");
+        })
+}
