@@ -1,10 +1,7 @@
 import React from 'react';
 import {
-    ScrollView,
-    Text
+    View,
 } from 'react-native'
-import * as api from '../services/apis/GithubAPI'
-import {InfoRepo} from "../components/popular-components/InfoRepo";
 import {ListRepo} from "../components/popular-components/ListRepo";
 
 export default class PopularScreen extends React.Component {
@@ -16,24 +13,22 @@ export default class PopularScreen extends React.Component {
         super(props);
         this.state = {
             repository: {},
-            loading:false
+            loading: false
         }
     }
 
-    componentDidMount() {
-        api.getRepoPopular()
-            .then(response => {
-                    // console.log("response", response['items'][0]);
-                    this.setState({repository: response['items'][0]})
-                }
-            );
+    endLoading = () => {
+        setTimeout(() => {
+            this.setState({loading: true})
+        }, 1000);
     }
 
     render() {
         return (
-            <ScrollView style={{padding:20}}>
-                <ListRepo/>
-            </ScrollView>
+            <View style={{flex:1}}>
+                <ListRepo handler={this.endLoading}/>
+            </View>
+
         )
     }
 }

@@ -5,6 +5,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
+import {Loader} from "../components/Loader";
 
 
 export default class HomeScreen extends React.Component {

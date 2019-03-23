@@ -2,13 +2,11 @@ import React from 'react';
 import {
     View,
     StyleSheet,
-    Text,
-    TouchableOpacity
 } from 'react-native';
-import {FormPlayer} from "../components/battle-components/FormPlayer";
 import {Player} from "../components/battle-components/Player";
 import {ButtonBattle} from "../components/battle-components/ButtonBattle";
 import {ResultBattle} from "../components/battle-components/ResultBattle";
+import {Loader} from "../components/Loader";
 
 export default class GameScreen extends React.Component {
     static navigationOptions = {
@@ -18,9 +16,10 @@ export default class GameScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            player1: {},
-            player2: {},
-            resultFight: false
+            player1: null,
+            player2: null,
+            resultFight: false,
+            loading: false
         }
     }
 
@@ -29,18 +28,30 @@ export default class GameScreen extends React.Component {
     }
 
     fight = () => {
-        this.setState({resultFight: !this.state.resultFight});
+        this.setState({
+            resultFight: !this.state.resultFight,
+            loading:true
+        });
+        setTimeout(()=> {
+            this.setState({
+                loading:false
+            });
+        },3000)
     }
 
     render() {
+        if(this.state.loading){
+            return <Loader/>
+        }
         return (
             <View style={styles.container}>
                 <Player number={1} handler={this.setPlayer}/>
                 {this.state.resultFight ?
                     <ResultBattle playerOne={this.state.player1}
                                   playerTwo={this.state.player2}
-                                  />
+                    />
                     :
+                    (this.state.player1 !== null && this.state.player2 !== null) &&
                     <ButtonBattle playerOne={this.state.player1}
                                   playerTwo={this.state.player2}
                                   handler={this.fight}/>

@@ -1,10 +1,11 @@
 import React from 'react'
 import {
-    FlatList,
+    FlatList, ScrollView,
     StyleSheet,
 } from 'react-native'
 import * as api from "../../services/apis/GithubAPI";
 import {InfoRepo} from "./InfoRepo";
+import {Loader} from "../Loader";
 
 export class ListRepo extends React.Component {
 
@@ -19,8 +20,10 @@ export class ListRepo extends React.Component {
     componentDidMount() {
         api.getRepoPopular()
             .then(response => {
-                    this.setState({listRepository: response.items});
-                    this.setState({loading: false})
+                    this.setState({
+                        listRepository: response.items,
+                        loading: false
+                    });
                 }
             );
     }
@@ -29,19 +32,18 @@ export class ListRepo extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return null
+            return <Loader/>
         }
-        // const listRepo = this.state.listRepository.map((repo) => {
-        //     return
-        // });
         return (
-            <FlatList
-                style={styles.list}
-                data={this.state.listRepository}
-                keyExtractor={this._keyExtractor}
-                renderItem={({item, i}) => <InfoRepo key={i} repository={item}/>
-                }
-            />
+            <ScrollView style={{padding: 20}}>
+                <FlatList
+                    style={styles.list}
+                    data={this.state.listRepository}
+                    keyExtractor={this._keyExtractor}
+                    renderItem={({item, i}) => <InfoRepo key={i} repository={item}/>
+                    }
+                />
+            </ScrollView>
         )
     }
 }
@@ -56,7 +58,7 @@ const
             fontSize: 28,
             fontWeight: 'bold'
         },
-        list:{
+        list: {
             borderBottomWidth: 1
         }
     })
