@@ -10,11 +10,12 @@ import {
 
 export class InfoPlayer extends React.Component {
     render() {
+        const {user, size} = this.props;
         return (
             <View>
-                <Image style={styles.image} source={{uri:this.props.user.avatar_url}}/>
-                <Text style={styles.text}>{this.props.user.name}</Text>
-                <Text style={styles.text}>@{this.props.user.login}</Text>
+                <Image style={styles.image} source={{uri:user.avatar_url}}/>
+                <Text style={[styles.text, {fontSize: size}]}>{user.name}</Text>
+                <Text style={[styles.text, {fontSize: size}]}>@{user.login}</Text>
             </View>
         )
     }xz
@@ -26,7 +27,6 @@ const styles = StyleSheet.create({
         width:100
     },
     text:{
-        fontSize:28,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
 })

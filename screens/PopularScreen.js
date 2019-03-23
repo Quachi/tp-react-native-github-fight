@@ -3,6 +3,7 @@ import {
     View,
 } from 'react-native'
 import {ListRepo} from "../components/popular-components/ListRepo";
+import {Start} from "../components/Start";
 
 export default class PopularScreen extends React.Component {
     static navigationOptions = {

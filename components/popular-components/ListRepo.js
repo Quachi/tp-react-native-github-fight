@@ -28,8 +28,6 @@ export class ListRepo extends React.Component {
             );
     }
 
-    _keyExtractor = (item) => item._id;
-
     render() {
         if (this.state.loading) {
             return <Loader/>
@@ -39,8 +37,8 @@ export class ListRepo extends React.Component {
                 <FlatList
                     style={styles.list}
                     data={this.state.listRepository}
-                    keyExtractor={this._keyExtractor}
-                    renderItem={({item, i}) => <InfoRepo key={i} repository={item}/>
+                    keyExtractor={(item, index) => 'key'+index}
+                    renderItem={({item}) => <InfoRepo repository={item}/>
                     }
                 />
             </ScrollView>

@@ -25,7 +25,7 @@ export class Player extends React.Component {
     renderUser = () => {
         return (
             <View style={styles.container}>
-                <InfoPlayer user={this.state.user}/>
+                <InfoPlayer user={this.state.user} size={28}/>
             </View>
         )
     }

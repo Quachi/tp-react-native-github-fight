@@ -5,10 +5,11 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import {Loader} from "../components/Loader";
+import {Start} from "../components/Start";
 
 
 export default class HomeScreen extends React.Component {
+
     static navigationOptions = {
         title: 'Home',
     };
@@ -16,6 +17,7 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Start/>
                 <Text style={styles.textHome}>Compare Github's repo with yours pairs</Text>
                 <TouchableOpacity style={styles.btnStart} onPress={() => this.props.navigation.navigate('Game')}>
                     <Text style={styles.textHome}>Start</Text>
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding:20
+        padding: 20
     },
     btnStart: {
         backgroundColor: '#DDDDDD',

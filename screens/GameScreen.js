@@ -43,18 +43,20 @@ export default class GameScreen extends React.Component {
         if(this.state.loading){
             return <Loader/>
         }
+        if(this.state.resultFight){
+            return (
+                <ResultBattle playerOne={this.state.player1}
+                              playerTwo={this.state.player2}
+                />
+            )
+        }
         return (
             <View style={styles.container}>
                 <Player number={1} handler={this.setPlayer}/>
-                {this.state.resultFight ?
-                    <ResultBattle playerOne={this.state.player1}
-                                  playerTwo={this.state.player2}
-                    />
-                    :
-                    (this.state.player1 !== null && this.state.player2 !== null) &&
-                    <ButtonBattle playerOne={this.state.player1}
-                                  playerTwo={this.state.player2}
-                                  handler={this.fight}/>
+                {(this.state.player1 !== null && this.state.player2 !== null) &&
+                <ButtonBattle playerOne={this.state.player1}
+                              playerTwo={this.state.player2}
+                              handler={this.fight}/>
                 }
                 <Player number={2} handler={this.setPlayer}/>
 

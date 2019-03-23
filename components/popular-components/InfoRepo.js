@@ -6,7 +6,6 @@ import {
     Image
 } from 'react-native'
 import {Icon} from 'expo';
-import Colors from "../../constants/Colors";
 
 export class InfoRepo extends React.Component {
     render() {
@@ -16,7 +15,7 @@ export class InfoRepo extends React.Component {
                 <Image style={styles.image} source={{uri: repository.owner.avatar_url}}/>
                 <View style={styles.info}>
                     <Text style={styles.text}>{repository.name}</Text>
-                    <Text style={styles.text}>@{repository.owner.login}</Text>
+                    <Text style={styles.text}>@{repository.owner.login}{this.props.key}</Text>
                 </View>
                 <Text style={styles.popularityCount}>{repository.stargazers_count}
                     <Icon.Ionicons
